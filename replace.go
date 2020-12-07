@@ -7,8 +7,12 @@ import (
 	"github.com/metakeule/replacer"
 )
 
+func New() replacer.Replacer {
+	return replacer.New()
+}
+
 func main() {
-	r := replacer.New()
+	r := New()
 
 	// reuse r to speed up parsing of
 	// different templates on the fly

@@ -1,2 +1,4 @@
 github.com/metakeule/replacer v0.0.0-20151213224214-2c3ab54e0996 h1:zbD9fq4J5s/WiVqVGp9pG156Jt9yeLS0X61tBxfNC84=
 github.com/metakeule/replacer v0.0.0-20151213224214-2c3ab54e0996/go.mod h1:rOIwD2QEjJfUJN/uFjUfH12P2QpWnVThx3Vj+dTGYYE=
+github.com/skeptycal/replace v0.0.0-20201207052220-e7f88651d5e6 h1:Pc3k4u8vIFwA7dhtAui2aQxBO1KeozC85uXXRgeuHa8=
+github.com/skeptycal/replace v0.0.0-20201207052220-e7f88651d5e6/go.mod h1:ARCMjDCvIGlpTNLab0kwj3HSRXFbLNbR8GeBcK1DZns=

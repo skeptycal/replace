@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"fmt"
 
-	replace "../replace"
+	replace "github.com/skeptycal/replace"
 )
 
 func main() {
