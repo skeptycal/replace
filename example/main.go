@@ -4,10 +4,13 @@ import (
 	"bytes"
 	"fmt"
 
-	replace "github.com/skeptycal/replace"
+	"github.com/skeptycal/replace"
 )
 
 func main() {
+
+	// /usr/share/dict/words
+
 	r := replace.New()
 
 	// reuse r to speed up parsing of
