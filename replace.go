@@ -172,7 +172,7 @@ func (r *Replacer) Parse(in []byte) error {
 	r.places = make([]place, 0, 22)
 	r.original = make([]byte, 0, lenIn)
 	var (
-		found       = -1
+		found       int
 		start       int
 		startPlaceH int
 		end         int

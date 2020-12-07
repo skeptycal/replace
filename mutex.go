@@ -59,7 +59,7 @@ type mutex struct {
 	mx   sync.Mutex
 }
 
-func (m mutex) logTracing(fn string) {
+func (m *mutex) logTracing(fn string) {
 	logTrace(fmt.Sprintf("Mutex %q %s called", m.Name, fn))
 }
 

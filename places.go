@@ -43,7 +43,7 @@ func Find(template []byte) (places []int) {
 	places = make([]int, 0, 22)
 
 	var (
-		found  = -1
+		found  int
 		start  int
 		end    int
 		length = len(template)
@@ -106,21 +106,21 @@ func Replace(template []byte, wr io.Writer, places []int, replacements map[strin
 		first = places[i]
 
 		// take the bytes from the last position within the template up to the placeholder
-		wr.Write(template[last:first])
+		_, _ = wr.Write(template[last:first])
 
 		// lookup the placeholder name within the replacements and
 		// write the replacement if we found one
 		replacement, has = replacements[string(template[first+2:places[i+1]])]
 		if has {
-			replacement.Seek(0, 0)
-			io.Copy(wr, replacement)
+			_, _ = replacement.Seek(0, 0)
+			_, _ = io.Copy(wr, replacement)
 		}
 
 		// track the last position for the next iteration
 		last = places[i+1] + 2
 	}
 
-	wr.Write(template[last:]) // write any remaining parts of the template that don't have any placeholders
+	_, _ = wr.Write(template[last:]) // write any remaining parts of the template that don't have any placeholders
 }
 
 // The Buffer interface is fullfilled by *bytes.Buffer. However since for performance reasons
@@ -165,7 +165,7 @@ func ReplaceString(template []byte, bf Buffer, places []int, replacements map[st
 		first = places[i]
 
 		// take the bytes from the last position within the template up to the placeholder
-		bf.Write(template[last:first])
+		_, _ = bf.Write(template[last:first])
 
 		// track the last position for the next iteration
 
@@ -173,13 +173,13 @@ func ReplaceString(template []byte, bf Buffer, places []int, replacements map[st
 		// write the replacement if we found one
 		replacement, has = replacements[string(template[first+2:places[i+1]])]
 		if has {
-			bf.WriteString(replacement)
+			_, _ = bf.WriteString(replacement)
 		}
 
 		last = places[i+1] + 2
 	}
 
-	bf.Write(template[last:]) // write any remaining parts of the template that don't have any placeholders
+	_, _ = bf.Write(template[last:]) // write any remaining parts of the template that don't have any placeholders
 }
 
 // ReplaceBytes replaces the placeholders at the given places inside the template with
@@ -217,7 +217,7 @@ func ReplaceBytes(template []byte, wr io.Writer, places []int, replacements map[
 		first = places[i]
 
 		// take the bytes from the last position within the template up to the placeholder
-		wr.Write(template[last:first])
+		_, _ = wr.Write(template[last:first])
 
 		// track the last position for the next iteration
 
@@ -225,13 +225,13 @@ func ReplaceBytes(template []byte, wr io.Writer, places []int, replacements map[
 		// write the replacement if we found one
 		replacement, has = replacements[string(template[first+2:places[i+1]])]
 		if has {
-			wr.Write(replacement)
+			_, _ = wr.Write(replacement)
 		}
 
 		last = places[i+1] + 2
 	}
 
-	wr.Write(template[last:]) // write any remaining parts of the template that don't have any placeholders
+	_, _ = wr.Write(template[last:]) // write any remaining parts of the template that don't have any placeholders
 }
 
 // Mapper maps strings.
@@ -275,7 +275,7 @@ func ReplaceMapper(template []byte, bf Buffer, places []int, mapper Mapper) {
 		first = places[i]
 
 		// take the bytes from the last position within the template up to the placeholder
-		bf.Write(template[last:first])
+		_, _ = bf.Write(template[last:first])
 
 		// track the last position for the next iteration
 
@@ -283,13 +283,13 @@ func ReplaceMapper(template []byte, bf Buffer, places []int, mapper Mapper) {
 		// write the replacement if we found one
 		replacement = mapper.Map(string(template[first+2 : places[i+1]]))
 		if len(replacement) > 0 {
-			bf.WriteString(replacement)
+			_, _ = bf.WriteString(replacement)
 		}
 
 		last = places[i+1] + 2
 	}
 
-	bf.Write(template[last:]) // write any remaining parts of the template that don't have any placeholders
+	_, _ = bf.Write(template[last:]) // write any remaining parts of the template that don't have any placeholders
 }
 
 // FindAndReplace finds placeholders and replaces them in one go.
